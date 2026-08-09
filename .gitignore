@@ -1,0 +1,25 @@
+# harness junk (never commit)
+.agents/
+.cursor/
+.opencode/
+.windsurf/
+.clinerules/
+AGENTS.md
+CLAUDE.md
+skills-lock.json
+*.db
+.env
+.env.*
+@AutomationLog.txt
+nul
+
+# local data
+institor-data/
+out/
+inbox/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.venv/
+node_modules/
