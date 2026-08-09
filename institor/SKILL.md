@@ -3,54 +3,65 @@ name: institor
 description: >-
   Shopping research agent skill: fit, load class, marketplace keywords, short
   shortlist. Triggers: /institor, institor, shopping helper, Naver, Coupang,
-  product fit, 호환, 검색어, 장바구니, buy research. No checkout automation.
+  product fit, 호환, 검색어, 장바구니, buy research, 문틈 전원, 연장선.
+  No checkout automation. Single repo SoT: institor-skills (no -dev twin).
 ---
 
 # Institor
 
 Latin *institor* — trader/errand-runner who fetches for someone else.
 
-Turn a **buy scene** into a **verdict-first** research card:
-
 ```text
 link | keywords | load | constraints  →  /institor  →  verdict + keywords + shortlist
 ```
 
-Spelling: skill **`institor`**. Repo may be `institor-skills`.
+Repo SoT: **`institor-skills` only** (no private `-dev` twin). Personal cases stay out of git.
+
+Spelling: skill **`institor`**.
 
 ### Typo recognition
 
 | Typed | Treat as |
 |-------|----------|
 | `institore` / `instittor` / `institorr` | institor |
-| 쇼핑 도우미 / 장 봐줘 / 검색어 | this skill |
+| 쇼핑 도우미 / 장 봐줘 / 검색어 / 뭐 사 | this skill |
+
+## Slash-ish commands
+
+| Input | Do |
+|-------|-----|
+| `/institor` or bare scene | Full research card |
+| `/institor keywords …` | Keyword pack only |
+| `/institor load …` | Classify watts / appliance → load class |
+| `/institor fit <url>` | Fit-first path (geometry) |
+| `/institor case` | Emit filled case-template markdown for operator notes |
 
 ## Reply shape (default)
 
-1. **First line = verdict** — short clause (OK / no / conditional).
-2. **Load class** — light | microwave-tier | heavy (see `references/load-classes.md`).
-3. **How** — 1–3 bullets (path, fit geometry, door/gap rules…).
-4. **Keywords** — paste-ready mall search strings.
-5. **Shortlist** — up to 3 *product classes* (not seller spam). Avoid fake prices.
-6. **Don’t** — concrete anti-patterns.
-7. Optional **case log** path for the operator’s notes.
+1. **First line = verdict** — OK / no / conditional + one clause.  
+2. **Load class** — `light` | `microwave-tier` | `heavy` when power matters.  
+3. **How** — 1–3 bullets.  
+4. **Keywords** — paste-ready (KR malls default if user is KO).  
+5. **Shortlist** — ≤3 **product classes** (not seller spam; no invented prices).  
+6. **Don’t** — concrete anti-patterns.  
+7. Optional case stub if they will reuse the scene.
 
 Language: match the user (KO if they write KO).
 
 ## When to use
 
-- Marketplace link + “does this fit my device?”
-- “What do I search on Naver/Coupang for X?”
-- Capacity / cord / multitap class (phone charger vs microwave-tier vs dryer-class)
-- DIY scene: power through a door/window without wrecking seals
-- Building a short shopping list from constraints
+- Marketplace link + fit/호환  
+- Naver/Coupang search terms  
+- Cord / multitap / capacity class  
+- Door/window power pass without wrecking seals  
+- Short shopping list from constraints  
 
 ## When not to use
 
-- Stock/securities buy flow  
-- Auto-login checkout, card entry, coupon claim bots  
-- Illegal acquisition / stolen account  
-- Medical/legal advice disguised as product pick  
+- Securities / stock flow  
+- Checkout, card entry, coupon bots  
+- Illegal acquisition  
+- Medical/legal product claims  
 
 ## Procedure
 
@@ -59,66 +70,71 @@ Language: match the user (KO if they write KO).
 | Field | Examples |
 |-------|----------|
 | Scene | balcony paint power, watch strap, desk lamp |
-| Device / site | model codes, door type |
-| Load | watts, or class name |
-| Constraints | no drill, keep heat seal, budget class |
-| URL | mall PDP or order detail |
+| Device / site | model, door type (hinged / sliding) |
+| Load | W, A, or class name |
+| Constraints | no drill, keep heat seal, budget |
+| URL | PDP or **order/myshop** detail |
 
-If the user pastes an **order/myshop** page, treat **shipped lines** as source of truth over PDP theory.
+Order page beats PDP theory (gift adapters, real options).
 
 ### 2. Route
 
 | Signal | Action |
 |--------|--------|
-| Wearable/phone accessory fit, mm, lug, 사은품 adapter | Fit path — geometry + OEM vs third-party (see skill notes; operator may also keep a thicker private fit playbook) |
-| Keywords / scene / load only | Keyword packs + load class |
-| Heavy load (dryer, multi-kW heater) | State **heavy**; recommend proper circuit — do not pretend a door-gap cord is enough |
+| Wearable/phone accessory, mm, lug, 사은품 | **Fit path** → `references/fit-routing.md` |
+| Scene / keywords / BOM | Keyword packs + shortlist |
+| Power draw mentioned | Load class first, then cord keywords |
+| heavy (dryer, multi-kW heat) | Say **heavy**; do not “solve” with door-gap cord shopping |
 
 ### 3. Load class
 
-Read `references/load-classes.md`. Never upgrade “microwave-tier” advice into industrial feeder design in this skill.
+`references/load-classes.md`  
+Never dress industrial feeder design as a mall tip.
 
 ### 4. Keywords
 
-Read `references/keyword-packs.md`. Prefer short mall tokens over essay queries. Offer avoid-list (e.g. ultra-slim door cord for microwave-tier).
+`references/keyword-packs.md`  
+Short tokens > essay queries. Include **avoid** list when load ≥ microwave-tier.
 
 ### 5. Shortlist
 
-Name **classes** (e.g. “15A short extension”, “forced-vent weatherstrip”). Link live PDPs only when fetched this turn; don’t invent SKUs.
+Classes only unless a live URL was fetched this turn. No fake SKUs.
 
-### 6. Honesty
+### 6. Honesty labels
 
 | Label | When |
 |-------|------|
 | OK | Class known; constraints match |
-| Conditional | Option (mm, length, A rating) must match |
-| Unverified seller | Thin reviews; geometry from title only |
-| No | Wrong family / unsafe for stated load |
+| Conditional | mm / length / amp rating must match |
+| Unverified seller | Title-only geometry |
+| No | Wrong family or unsafe for load |
 
-Never claim you installed or purchased it.
+Never claim you bought or installed it.
 
-### 7. Optional case log
+### 7. Case log (optional)
 
-If the operator keeps cases, use `references/case-template.md`. Public git samples must stay synthetic — no real addresses/orders.
+`references/case-template.md` → operator vault/notes.  
+Public git samples must stay synthetic.
 
 ## Anti-goals
 
 1. Checkout / payment automation  
 2. Fabricated reviews  
-3. Host paths, real PII, card data in outputs destined for git  
-4. “Just wedge any cord in the door” for continuous high load  
+3. Host paths, real PII, cards in git-bound output  
+4. Microwave-tier+ on crushed novelty ribbon cords  
 
 ## Related files
 
 - `references/load-classes.md`  
 - `references/keyword-packs.md`  
+- `references/fit-routing.md`  
 - `references/case-template.md`  
 - `../docs/sample-case-balcony-power.md`  
 
 ## Verification
 
-- [ ] Verdict line first  
-- [ ] Load class named when power matters  
+- [ ] Verdict first  
+- [ ] Load named when power matters  
 - [ ] Keywords paste-ready  
 - [ ] No fake purchase claims  
-- [ ] Heavy loads not waved through on junk cords  
+- [ ] Heavy not waved through  

@@ -56,14 +56,15 @@ Full sample: [docs/sample-case-balcony-power.md](docs/sample-case-balcony-power.
 - Treating heavy electrical work as a shopping tip  
 - Shipping real orders, addresses, or host paths in git  
 
-## Layers (like Kampff)
+## Layers (single repo)
 
-| Layer | Repo | Visibility |
-|-------|------|------------|
-| **Public** | `institor-skills` | this repo |
-| **Dev** | `institor-skills-dev` | private twin |
-| **Live** | your agent skill dir | operator only |
-| **Data** | local case notes | never git secrets |
+Unlike Kampff’s public/dev split, **Institor keeps one git tree**:
+
+| Layer | Where |
+|-------|--------|
+| **Product SoT** | this repo (`institor-skills`) — edit & release here |
+| **Live** | agent skill dir copy of `institor/` |
+| **Personal cases** | operator notes outside git (no orders/PII in commits) |
 
 ## License
 

@@ -18,11 +18,14 @@ One paragraph: what / where / why.
 ## Constraints
 
 - 
-- 
 
 ## Verdict
 
 One line.
+
+## Load class
+
+light | microwave-tier | heavy — why.
 
 ## Keywords
 
@@ -40,7 +43,7 @@ One line.
 
 ## Links
 
-- (optional PDP/order — redact PII)
+- (optional; redact PII before any public paste)
 
 ## Decision
 

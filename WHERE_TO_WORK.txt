@@ -1,3 +1,4 @@
-Public product repo: this tree (institor-skills).
-Private daily work twin: institor-skills-dev (private on GitHub).
-Operator live skill may live in your agent home — never paste host paths or order IDs into public.
+Public product + skill SoT: this tree (`institor-skills`).
+No separate `-dev` twin — upgrade here.
+Operator cases / PII: keep outside git (vault `Idea/Shopping/` or local notes).
+Live skill: copy `institor/` into your agent skills dir.
