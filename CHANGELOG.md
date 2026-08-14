@@ -2,6 +2,14 @@
 
 All notable changes to **institor-skills** are documented here.
 
+## [0.3.0] — 2026-08-14
+
+### Added
+
+- VS Code shopping desk (`extension/`) — verdict, load class, keywords, shortlist, case save
+- Local pack engine (no Hermes job)
+- Spec: `docs/superpowers/specs/2026-08-14-institor-vscode-design.md`
+
 ## [0.2.0] — 2026-08-09
 
 ### Changed

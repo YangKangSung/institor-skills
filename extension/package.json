@@ -1,0 +1,140 @@
+{
+  "name": "institor",
+  "displayName": "Institor",
+  "description": "Shopping desk: verdict, load class, KR mall keywords, shortlist, cases. No checkout.",
+  "version": "0.1.0",
+  "publisher": "YangKangSung",
+  "author": "YangKangSung (ksyang)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YangKangSung/institor-skills.git"
+  },
+  "homepage": "https://github.com/YangKangSung/institor-skills#readme",
+  "bugs": {
+    "url": "https://github.com/YangKangSung/institor-skills/issues"
+  },
+  "qna": "https://github.com/YangKangSung/institor-skills/issues",
+  "private": false,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "institor",
+    "shopping",
+    "naver",
+    "coupang",
+    "keywords",
+    "fit",
+    "load-class"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0f1011",
+    "theme": "dark"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "institor.openDesk",
+        "title": "Institor: Open Desk",
+        "icon": "$(search)"
+      },
+      {
+        "command": "institor.saveCase",
+        "title": "Institor: Save Last Card as Case"
+      },
+      {
+        "command": "institor.openCases",
+        "title": "Institor: Open Cases Folder"
+      },
+      {
+        "command": "institor.refreshCases",
+        "title": "Institor: Refresh Cases",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "institor",
+          "title": "Institor",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "institor": [
+        {
+          "type": "webview",
+          "id": "institor.desk",
+          "name": "쇼핑 데스크"
+        },
+        {
+          "id": "institor.cases",
+          "name": "케이스"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "institor.cases",
+        "contents": "저장된 케이스가 없습니다.\n데스크에서 조회한 뒤 케이스 저장을 누르세요.\n[케이스 폴더 열기](command:institor.openCases)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "institor.refreshCases",
+          "when": "view == institor.cases",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Institor",
+      "properties": {
+        "institor.dataRoot": {
+          "type": "string",
+          "default": "",
+          "order": 1,
+          "markdownDescription": "Scratch + fallback cases (`cases/`). Empty = `~/.institor-data`."
+        },
+        "institor.wikiRoot": {
+          "type": "string",
+          "default": "",
+          "order": 2,
+          "markdownDescription": "Durable case folder. Empty = `{dataRoot}/cases`."
+        },
+        "institor.skillsRoot": {
+          "type": "string",
+          "default": "",
+          "order": 3,
+          "markdownDescription": "Clone of **institor-skills** for live pack overlay. Empty = auto-detect next to the extension."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node ./node_modules/typescript/bin/tsc -p ./",
+    "watch": "node ./node_modules/typescript/bin/tsc -watch -p ./",
+    "smoke": "node scripts/smoke.cjs",
+    "dev:link": "node scripts/dev-link.js",
+    "apply": "node scripts/apply.js",
+    "lint": "node ./node_modules/typescript/bin/tsc -p ./ --noEmit",
+    "package": "npx --yes @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.5"
+  }
+}
