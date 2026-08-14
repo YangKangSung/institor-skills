@@ -17,14 +17,16 @@ const vsix = path.join(root, `${pkg.name}-${pkg.version}.vsix`);
 const env = { ...process.env, NODE_ENV: "development" };
 
 function run(cmd, args, opts = {}) {
-  const quoted = /\s/.test(cmd) ? `"${cmd}"` : cmd;
-  console.log(`\n$ ${quoted} ${args.join(" ")}`);
-  const r = spawnSync(quoted, args, {
+  const useShell = opts.shell !== false && (opts.shell === true || process.platform === "win32");
+  const exe = useShell && /\s/.test(cmd) ? `"${cmd}"` : cmd;
+  console.log(`\n$ ${exe} ${args.join(" ")}`);
+  const r = spawnSync(exe, args, {
     cwd: root,
     stdio: "inherit",
-    shell: true,
+    shell: useShell,
     env,
     ...opts,
+    env: { ...env, MSYS_NO_PATHCONV: "1", ...(opts.env || {}) },
   });
   if (r.status !== 0) {
     console.error(`[apply] failed: ${cmd} ${args.join(" ")} (rc=${r.status})`);
