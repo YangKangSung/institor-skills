@@ -1,0 +1,6 @@
+out/
+node_modules/
+*.vsix
+*.map
+.vscode-test/
+.institor-dev

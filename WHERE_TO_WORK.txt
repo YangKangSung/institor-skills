@@ -2,3 +2,4 @@ Public product + skill SoT: this tree (`institor-skills`).
 No separate `-dev` twin — upgrade here.
 Operator cases / PII: keep outside git (vault `Idea/Shopping/` or local notes).
 Live skill: copy `institor/` into your agent skills dir.
+VS Code desk: `extension/` (local packs; cases → wikiRoot or ~/.institor-data/cases).

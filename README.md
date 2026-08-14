@@ -24,9 +24,18 @@ scene · link · load class  →  /institor  →  verdict + keywords + 3 product
 | [Kampff](https://github.com/YangKangSung/kampff-skills) | Read the board (people / distance) |
 | **Institor** | Run the market errand (buy research) |
 
+## Surfaces
+
+| Surface | Path |
+|---------|------|
+| Agent skill | [`institor/SKILL.md`](institor/SKILL.md) — `/institor` |
+| VS Code desk | [`extension/`](extension/README.md) — local packs, no Hermes |
+
 ## Install
 
-Copy or submodule the `institor/` folder into your agent skills directory, or point your agent at this repo’s skill path.
+**Skill:** copy or submodule `institor/` into your agent skills directory.
+
+**Desk:** `cd extension && npm run apply` then Reload Window.
 
 Triggers: `/institor`, `institor`, shopping research, Naver/Coupang keywords, product fit, load class.
 
