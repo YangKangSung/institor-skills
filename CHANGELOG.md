@@ -2,6 +2,12 @@
 
 All notable changes to **institor-skills** are documented here.
 
+## [0.3.1] — 2026-08-15
+
+### Changed
+
+- Desk 0.2.0: buy = BOM (`+` lines), sell = memo. Any shop. Marketplace republish.
+
 ## [0.3.0] — 2026-08-14
 
 ### Added

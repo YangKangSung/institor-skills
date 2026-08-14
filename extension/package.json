@@ -1,8 +1,8 @@
 {
   "name": "institor",
   "displayName": "Institor",
-  "description": "Shopping desk: verdict, load class, KR mall keywords, shortlist, cases. No checkout.",
-  "version": "0.1.0",
+  "description": "Shopping desk: buy BOM or sell memo. Scene → verdict, search queries, cases. Any shop. No checkout.",
+  "version": "0.2.0",
   "publisher": "YangKangSung",
   "author": "YangKangSung (ksyang)",
   "license": "MIT",
@@ -23,13 +23,12 @@
     "Other"
   ],
   "keywords": [
-    "institor",
     "shopping",
-    "naver",
-    "coupang",
+    "search",
     "keywords",
     "fit",
-    "load-class"
+    "load-class",
+    "shortlist"
   ],
   "activationEvents": [
     "onStartupFinished"

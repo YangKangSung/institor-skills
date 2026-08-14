@@ -32,6 +32,8 @@ type: shopping-case
 title: ${title}
 date: ${today()}
 load_class: ${card.load}
+intent: ${card.intent}
+list_kind: ${card.listKind}
 status: research
 verdict: ${card.verdict}
 tags: [shopping]
