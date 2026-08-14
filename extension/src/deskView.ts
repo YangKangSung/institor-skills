@@ -64,6 +64,7 @@ export class DeskViewProvider implements vscode.WebviewViewProvider {
         url: p.url || "",
         load: parseLoad(p.load || ""),
         constraints: p.constraints || "",
+        intent: p.intent === "sell" || p.intent === "buy" ? p.intent : "",
       };
       const cfg = getConfig(this.extensionUri.fsPath);
       const card = buildCard(input, { extraPacks: overlayPacks(cfg.skillsRoot) });
@@ -96,16 +97,23 @@ export class DeskViewProvider implements vscode.WebviewViewProvider {
   <details class="guide">
     <summary>시작</summary>
     <ol>
-      <li>장면을 한 줄 적는다 (예: 발코니 문틈으로 전자레인지급 전원).</li>
-      <li>조회 → 판정·키워드·제품군.</li>
-      <li>필요하면 케이스 저장.</li>
+      <li>사기 / 팔기를 고른다.</li>
+      <li>목적을 <code>+</code>로 나눈다. 사기=같이 살 줄. 팔기=구성 메모.</li>
+      <li>조회 → 검색어(또는 제목 토큰) 복사. 아무 쇼핑몰.</li>
     </ol>
-    <p class="hint">에이전트 없음. 팩 매칭만. 결제 없음.</p>
+    <p class="hint">에이전트 없음. 결제 없음.</p>
   </details>
+  <label>방향 <span class="term" title="사기=검색해서 산다. 팔기=올릴 글 메모만.">?</span></label>
+  <select id="intent">
+    <option value="buy">사기</option>
+    <option value="sell">팔기</option>
+    <option value="">자동</option>
+  </select>
   <label>장면 <span class="req">*</span></label>
-  <textarea id="scene" rows="3" placeholder="무엇을 / 어디에 / 왜"></textarea>
+  <textarea id="scene" rows="3" placeholder="문풍지 + 15A 연장선 + 그로밋"></textarea>
   <label>링크</label>
-  <input id="url" type="text" placeholder="PDP 또는 주문 상세 URL" />
+  <input id="url" type="text" placeholder="listing or order URL (any shop)" />
+  <div id="loadWrap">
   <label>로드 <span class="term" title="소비 전력 대역. light / microwave-tier / heavy">클래스</span></label>
   <select id="load">
     <option value="">자동</option>
@@ -113,7 +121,8 @@ export class DeskViewProvider implements vscode.WebviewViewProvider {
     <option value="microwave-tier">microwave-tier</option>
     <option value="heavy">heavy</option>
   </select>
-  <label>제약</label>
+  </div>
+  <label>제약 / 메모</label>
   <input id="constraints" type="text" placeholder="드릴 금지, 문풍 유지, 예산…" />
   <div class="row">
     <button id="go" class="btn primary" type="button">조회</button>

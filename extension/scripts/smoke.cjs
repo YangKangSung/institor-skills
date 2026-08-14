@@ -31,8 +31,33 @@ const lamp = buildCard({ scene: "책상 LED 램프" });
 assert.strictEqual(lamp.load, "light");
 assert.strictEqual(lamp.verdict, "OK");
 
+const amazon = buildCard({ scene: "balcony door gap for microwave power cord" });
+assert.ok(amazon.keywords.length >= 2);
+assert.ok(amazon.keywords.some((k) => /door|balcony|weatherstrip|cord/i.test(k)));
+assert.ok(!JSON.stringify(amazon).includes("쿠팡"));
+assert.ok(!JSON.stringify(amazon).includes("네이버"));
+
 const empty = buildCard({ scene: "" });
 assert.strictEqual(empty.verdict, "no");
+
+const sell = buildCard({
+  scene: "원본 Xbox One(뚱뚱한 1세대) + 키넥트 + 무선 패드 1개",
+  intent: "sell",
+});
+assert.strictEqual(sell.intent, "sell");
+assert.strictEqual(sell.verdict, "OK");
+assert.ok(sell.keywords.some((k) => /키넥트|Kinect/i.test(k)));
+assert.ok(sell.avoid.some((a) => /S\/X|풀세트/.test(a)));
+assert.ok(!sell.verdictLine.includes("전용 팩 없음"));
+assert.ok(!JSON.stringify(sell).includes("쿠팡"));
+assert.strictEqual(sell.listKind, "memo");
+assert.ok(sell.items.length >= 3);
+
+const bom = buildCard({ scene: "문풍지 + 15A 연장선 + 케이블 그로밋" });
+assert.strictEqual(bom.intent, "buy");
+assert.strictEqual(bom.listKind, "bom");
+assert.strictEqual(bom.items.length, 3);
+assert.ok(bom.items.every((i) => i.role === "must"));
 
 const md = fs.readFileSync(
   path.join(__dirname, "..", "..", "institor", "references", "keyword-packs.md"),
