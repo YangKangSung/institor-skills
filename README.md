@@ -3,6 +3,7 @@
 ### The agent that runs the errand.
 
 [![Stars](https://img.shields.io/github/stars/YangKangSung/institor-skills?style=social)](https://github.com/YangKangSung/institor-skills/stargazers)
+[![Sponsor](https://img.shields.io/badge/Sponsor-YangKangSung-ea4aaa?logo=githubsponsors)](https://github.com/sponsors/YangKangSung)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Skill](https://img.shields.io/badge/agent-SKILL.md-0ea5e9)](institor/SKILL.md)
 
